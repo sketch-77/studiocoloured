@@ -1,4 +1,4 @@
-# studiocoloured-portfilio/initial-contact
+# studiocoloured-portfilio/initial-contact (remove)
 
 This client form is the initial contact between client and freelancer. The client feedback allows the freelancer to have a better understanding of the client, to efficiently attend to the client request . . .
 
