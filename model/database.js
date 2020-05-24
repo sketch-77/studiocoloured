@@ -21,7 +21,7 @@ con.connect(function (err) {
 
   //Creating clients table.
   sql =
-    "CREATE TABLE clients (id INT AUTO_INCREMENT, company_name VARCHAR(255), client_name VARCHAR(255), company_url VARCHAR(255), mobile_number VARCHAR(255), client_email VARCHAR(255), PRIMARY KEY(id));";
+    "DROP TABLE clients; CREATE TABLE clients (id INT AUTO_INCREMENT, company_name VARCHAR(255), client_name VARCHAR(255), company_url VARCHAR(255), mobile_number VARCHAR(255), client_email VARCHAR(255), PRIMARY KEY(id));";
   con.query(sql, function (err, result) {
     if (err) throw err;
     console.log("Table creation `clients` was successful!");
@@ -37,7 +37,7 @@ con.connect(function (err) {
 
   //creating projects table.
   sql =
-    "CREATE TABLE projects (id INT AUTO_INCREMENT, project_title VARCHAR(255), project_summary VARCHAR(255), project_status VARCHAR(255), client_id INT, PRIMARY KEY(id));";
+    "DROP TABLE projects; CREATE TABLE projects (id INT AUTO_INCREMENT, project_title VARCHAR(255), project_summary VARCHAR(255), project_status VARCHAR(255), client_id INT, PRIMARY KEY(id));";
   con.query(sql, function (err, result) {
     if (err) throw err;
     console.log("Table creation `projects` was successful!");
@@ -46,7 +46,7 @@ con.connect(function (err) {
 
   // creating table for tasks.
   sql =
-    "CREATE TABLE tasks (id INT AUTO_INCREMENT, task_title VARCHAR(255), task_summary VARCHAR(255), task_status VARCHAR(255), project_id INT, PRIMARY KEY(id));";
+    "DROP TABLE tasks; CREATE TABLE tasks (id INT AUTO_INCREMENT, task_title VARCHAR(255), task_summary VARCHAR(255), task_status VARCHAR(255), project_id INT, PRIMARY KEY(id));";
   con.query(sql, function (err, result) {
     if (err) throw err;
     console.log("Table creation `tasks` was successful!");
@@ -55,7 +55,7 @@ con.connect(function (err) {
 
   // creating table for images.
   sql =
-    "CREATE TABLE images (id INT AUTO_INCREMENT, alt_text VARCHAR(255), img_url VARCHAR(255), project_id INT, PRIMARY KEY(id));";
+    "DROP TABLE images; CREATE TABLE images (id INT AUTO_INCREMENT, alt_text VARCHAR(255), img_url VARCHAR(255), project_id INT, PRIMARY KEY(id));";
   con.query(sql, function (err, result) {
     if (err) throw err;
     console.log("Table creation `images` was successful!");
