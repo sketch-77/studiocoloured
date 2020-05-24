@@ -20,16 +20,14 @@ con.connect(function (err) {
   let sql = "";
 
   //Creating clients table.
-  sql =
-    "DROP TABLE clients; CREATE TABLE clients (id INT AUTO_INCREMENT, company VARCHAR(255), firstname VARCHAR(255), lastname VARCHAR(255), email VARCHAR(255), mobile VARCHAR(255), url VARCHAR(255), PRIMARY KEY(id));";
+  sql = `DROP TABLE clients; CREATE TABLE clients (id INT AUTO_INCREMENT, company VARCHAR(255), firstname VARCHAR(255), lastname VARCHAR(255), email VARCHAR(255), mobile VARCHAR(255), url VARCHAR(255), PRIMARY KEY(id));`;
   con.query(sql, function (err, result) {
     if (err) throw err;
     console.log("Table creation `clients` was successful!");
   });
 
   // //Creation of dummy table for testing purpose.
-  sql =
-    "INSERT INTO clients (company, firstname, lastname, email, mobile, url) VALUES ('Lufthansa', 'Zoobee', 'Zurname', 'zzz@lhzxd.com', '+34798899381','www.xstudiocoloured.com');";
+  sql = `INSERT INTO clients (company, firstname, lastname, email, mobile, url) VALUES ('Lufthansa', 'Zoobee', 'Zurname', 'zzz@lhzxd.com', '+34798899381','www.xstudiocoloured.com');`;
   con.query(sql, function (err, result) {
     if (err) throw err;
     console.log("Creation of 'test' was successful!");

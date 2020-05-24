@@ -4,7 +4,7 @@ const bodyParser = require("body-parser");
 const db = require("../model/helper");
 
 // const getClients = require("../guards/getClients");
-router.use(bodyParser.json());
+// router.use(bodyParser.json());
 
 const getClients = (req, res) => {
   db("SELECT * FROM clients;")
@@ -29,8 +29,14 @@ router.get("/:id", function (req, res, next) {
 });
 
 // INSERT a new client into DB
-// router.post("/", function(req,res,next){
-//     const {company_name, client_name, email, company_url, mobile_number}
-// });
+router.post("/", function (req, res, next) {
+  const { company, firstname, lastname, email, mobile, url } = req.body;
+  db(
+    `INSERT INTO clients (company, firstname, lastname, email, mobile, url) VALUES ("${company}", "${firstname}","${lastname}","${email}","${mobile}","${url}");`
+  );
+  then((results) => {
+    res.send({ msg: "DATA WAS ADDED YAAAY!" });
+  }).catch((err) => res.status(500).sender(err));
+});
 
 module.exports = router;
