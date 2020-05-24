@@ -19,9 +19,9 @@ con.connect(function (err) {
   console.log("Connected!");
   let sql = "";
 
-  //Creatingclients table.
+  //Creating clients table.
   sql =
-    "DROP TABLE if exists clients; CREATE TABLE clients(id INT NOT NULL AUTO_INCREMENT,companyName VARCHAR(255) NOT NULL,clientName VARCHAR(255) NOT NULL,email varchar NOT NULL,companyUrl VARCHAR(12) NOT NULL,mobileNr VARCHAR(15) NOT NULL,PRIMARY KEY (id));";
+    "CREATE TABLE clients (id INT AUTO_INCREMENT, company_name VARCHAR(255), client_name VARCHAR(255), company_url VARCHAR(255), mobile_number VARCHAR(255), client_email VARCHAR(255), PRIMARY KEY(id));";
   con.query(sql, function (err, result) {
     if (err) throw err;
     console.log("Table creation `clients` was successful!");
@@ -35,9 +35,31 @@ con.connect(function (err) {
     console.log("Creation of 'test' was successful!");
   });
 
-  //creating project table.
-
+  //creating projects table.
+  sql =
+    "CREATE TABLE projects (id INT AUTO_INCREMENT, project_title VARCHAR(255), project_summary VARCHAR(255), project_status VARCHAR(255), client_id INT, PRIMARY KEY(id));";
+  con.query(sql, function (err, result) {
+    if (err) throw err;
+    console.log("Table creation `projects` was successful!");
+  });
   // Dummy table for project.
+
+  // creating table for tasks.
+  sql =
+    "CREATE TABLE tasks (id INT AUTO_INCREMENT, task_title VARCHAR(255), task_summary VARCHAR(255), task_status VARCHAR(255), project_id INT, PRIMARY KEY(id));";
+  con.query(sql, function (err, result) {
+    if (err) throw err;
+    console.log("Table creation `tasks` was successful!");
+  });
+  // creating dummy table for tasks.
+
+  // creating table for images.
+  sql =
+    "CREATE TABLE images (id INT AUTO_INCREMENT, alt_text VARCHAR(255), img_url VARCHAR(255), project_id INT, PRIMARY KEY(id));";
+  con.query(sql, function (err, result) {
+    if (err) throw err;
+    console.log("Table creation `images` was successful!");
+  });
 
   con.end();
 });

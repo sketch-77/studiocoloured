@@ -1,6 +1,14 @@
-# studiocoloured-portfilio/initial-contact TTTT
+# Studio Coloured*PROJECT TRACKING TOOL*
 
-This client form is the initial contact between client and freelancer. The client feedback allows the freelancer to have a better understanding of the client, to efficiently attend to the client request . . .
+The initial contact will be via studio coloured website where a current client is given a username and password to access the CLIENT side. This will allow the client access to client projects and each project's tasks.
+Client access will allow:
+[] tracking the various projects,
+[] tracking tasks of a project,
+[] add comments (ammendments required, comments)
+
+This also allows for clarity during the project creation phase, tasks are clear and concise. The USER will be able to add comments or changes that will be updated by ADMIN. The data will be updated to the database and the USER will receive notification via email once the data is fetched and displayed on the USER side.
+
+The USER will be able to view the project status (this project is 50% complete) as well as individual task status (this task is 30% complete). During the various stage of the task and project phase, images of the development process will be possible.
 
 ## Full Stack Development App
 
@@ -16,7 +24,10 @@ For this full stack app we will be using React, Node/Express, and MySQL, Express
 ### Database Prep
 
 - Access the MySQL interface in your terminal by running `mysql -u root -p`
-- Create a new database called facebook: `create database studiocoloured`
+
+- Check if the dataase is there : `show databases;` // studiocoloured
+
+- Create a new database called studiocoloured: `create database studiocoloured`
 - Add a `.env` file to the main folder of this repository containing the MySQL authentication information for MySQL user. For example:
 
 ```bash
@@ -48,6 +59,10 @@ Create a webpage with the following functionality:
 #### DB SCHEMA DESIGN
 
 ![schema](/img/db.png)
+&nbsp;
+&nbsp;
+
+![databaseSchema](https://app.dbdesigner.net/designer/schema/330828)
 &nbsp;
 &nbsp;
 
