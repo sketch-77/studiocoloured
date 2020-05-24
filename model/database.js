@@ -21,15 +21,15 @@ con.connect(function (err) {
 
   //Creating clients table.
   sql =
-    "DROP TABLE clients; CREATE TABLE clients (id INT AUTO_INCREMENT, company_name VARCHAR(255), client_name VARCHAR(255), company_url VARCHAR(255), mobile_number VARCHAR(255), client_email VARCHAR(255), PRIMARY KEY(id));";
+    "DROP TABLE clients; CREATE TABLE clients (id INT AUTO_INCREMENT, company VARCHAR(255), firstname VARCHAR(255), lastname VARCHAR(255), email VARCHAR(255), mobile VARCHAR(255), url VARCHAR(255), PRIMARY KEY(id));";
   con.query(sql, function (err, result) {
     if (err) throw err;
     console.log("Table creation `clients` was successful!");
   });
 
-  //Creation of dummy table for testing purpose.
+  // //Creation of dummy table for testing purpose.
   sql =
-    "INSERT INTO clients (companyName, clientName, email,  companyUrl, mobileNr) VALUES ('La Curacion Holistic', 'Adzo Sowani', 'lch@gmail.com', 'www.lacuracionholistica.es', '+34 657314526');";
+    "INSERT INTO clients (company, firstname, lastname, email, mobile, url) VALUES ('Lufthansa', 'Zoobee', 'Zurname', 'zzz@lhzxd.com', '+34798899381','www.xstudiocoloured.com');";
   con.query(sql, function (err, result) {
     if (err) throw err;
     console.log("Creation of 'test' was successful!");
@@ -37,16 +37,23 @@ con.connect(function (err) {
 
   //creating projects table.
   sql =
-    "DROP TABLE projects; CREATE TABLE projects (id INT AUTO_INCREMENT, project_title VARCHAR(255), project_summary VARCHAR(255), project_status VARCHAR(255), client_id INT, PRIMARY KEY(id));";
+    "DROP TABLE projects; CREATE TABLE projects (id INT AUTO_INCREMENT, title VARCHAR(255), summary VARCHAR(255), project_status VARCHAR(255), client_id INT, PRIMARY KEY(id));";
   con.query(sql, function (err, result) {
     if (err) throw err;
     console.log("Table creation `projects` was successful!");
   });
+
   // Dummy table for project.
+  sql =
+    "INSERT INTO projects (title, summary, project_status) VALUES ('Corporate ID creation','Client needs a new brand identity for logo, website and name cards.', 'This project is 20 percent complete');";
+  con.query(sql, function (err, result) {
+    if (err) throw err;
+    console.log("Creation of 'project test' was successful!");
+  });
 
   // creating table for tasks.
   sql =
-    "DROP TABLE tasks; CREATE TABLE tasks (id INT AUTO_INCREMENT, task_title VARCHAR(255), task_summary VARCHAR(255), task_status VARCHAR(255), project_id INT, PRIMARY KEY(id));";
+    "DROP TABLE tasks; CREATE TABLE tasks (id INT AUTO_INCREMENT, title VARCHAR(255), summary VARCHAR(255), task_status VARCHAR(255), project_id INT, PRIMARY KEY(id));";
   con.query(sql, function (err, result) {
     if (err) throw err;
     console.log("Table creation `tasks` was successful!");
