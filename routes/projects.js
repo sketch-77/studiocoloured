@@ -10,36 +10,36 @@ const getProjects = require("../guards/getProjects");
 
 router.use(bodyParser.json());
 
-// GET tasks list
+// GET projects list
 router.get("/", getProjects);
 
-// *TEST to see if task exists then mark status if its complete
+// *TEST to see if project exists then mark status if its complete
 router.put("/:id", projectShouldExist, (req, res) => {
   const { id } = req.params;
 
-  db(`UPDATE tasks SET complete = !complete WHERE id = ${id};`)
+  db(`UPDATE projects SET complete = !complete WHERE id = ${id};`)
     .then(() => {
       getProjects(req, res);
     })
     .catch((err) => res.status(500).send(err));
 });
 
-// GET one task
+// GET one project
 router.get("/:id", (req, res) => {
   const { id } = req.params;
 
-  db(`SELECT * FROM tasks WHERE id = ${id}`)
+  db(`SELECT * FROM projects WHERE id = ${id}`)
     .then((results) => {
       res.send(results.data[0]);
     })
     .catch((err) => res.status(500).send(err));
 });
 
-// INSERT a new task into DB
+// INSERT a new project into DB
 router.post("/id:", (req, res) => {
-  const { title, summary, task_status, project_id } = req.body;
+  const { title, project_status } = req.body;
   db(
-    `INSERT INTO tasks (title, summary, task_status, email, mobile, url) VALUES ('${title}', '${summary}','${task_status}','${project_id}');`
+    `INSERT INTO projects (title, project_status, complete ) VALUES ('${title},'${project_status}', 0);`
   )
     .then(() => {
       getProjects(req, res);
@@ -51,7 +51,7 @@ router.delete("/:id", projectShouldExist, (req, res) => {
   //your code here
   const { id } = req.params;
 
-  db(`DELETE FROM tasks WHERE id = ${id};`)
+  db(`DELETE FROM projects WHERE id = ${id};`)
     .then(() => {
       getProjects(req, res);
     })

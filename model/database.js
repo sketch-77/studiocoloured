@@ -35,7 +35,7 @@ con.connect(function (err) {
 
   //creating projects table.
   sql =
-    "DROP TABLE projects; CREATE TABLE projects (id INT AUTO_INCREMENT, title VARCHAR(255), summary VARCHAR(255), project_status INT(3), client_id INT, PRIMARY KEY(id));";
+    "DROP TABLE projects; CREATE TABLE projects (id INT AUTO_INCREMENT, title VARCHAR(255), project_status INT(3), complete BOOLEAN, client_id INT, PRIMARY KEY(id));";
   con.query(sql, function (err, result) {
     if (err) throw err;
     console.log("Table creation `projects` was successful!");
@@ -43,7 +43,7 @@ con.connect(function (err) {
 
   // Dummy table for project.
   sql =
-    "INSERT INTO projects (title, summary, project_status) VALUES ('Corporate ID creation','Client needs a new brand identity for logo, website and name cards.', 'This project is 20 percent complete');";
+    "INSERT INTO projects (title, project_status, complete) VALUES (Client needs a new brand identity for logo, website and name cards.', '20', '0');";
   con.query(sql, function (err, result) {
     if (err) throw err;
     console.log("Creation of 'project test' was successful!");
@@ -51,7 +51,7 @@ con.connect(function (err) {
 
   // creating table for tasks.
   sql =
-    "DROP TABLE tasks; CREATE TABLE tasks (id INT AUTO_INCREMENT, title VARCHAR(255), summary VARCHAR(255), task_status INT(3), project_id INT, PRIMARY KEY(id));";
+    "DROP TABLE tasks; CREATE TABLE tasks (id INT AUTO_INCREMENT, title VARCHAR(255), task_status INT(3), complete BOOLEAN, project_id INT, PRIMARY KEY(id));";
   con.query(sql, function (err, result) {
     if (err) throw err;
     console.log("Table creation `tasks` was successful!");
