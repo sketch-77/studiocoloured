@@ -14,15 +14,15 @@ const getClients = (req, res, next) => {
     .catch((err) => res.status(500).send(err));
 };
 
-router.get("/", (req, res) => {
-  res.send("Welcome to Studio Coloured Clients List!");
-});
+// router.get("/", (req, res) => {
+//   res.send("Welcome to Studio Coloured Clients List!");
+// });
 
 // GET clients list
 router.get("/", getClients);
 // router.get("/clients", getClients);
 
-// **** TEST to see if client exists attempt 1
+// **** TEST to see if client exists attempt 1 *** create the guards ***
 // router.put("/clients/:id", clientShouldExist, (req, res, next) => {
 //   const { id } = req.params;
 
@@ -34,7 +34,7 @@ router.get("/", getClients);
 // });
 
 // GET one client attempt 2
-router.get("/clients/:id", function (req, res, next) {
+router.get("/:id", function (req, res, next) {
   const { id } = req.params;
 
   db(`SELECT * FROM clients WHERE id = ${id}`)
@@ -65,8 +65,8 @@ router.delete("/:id", function (req, res, next) {
   db(`SELECT * FROM clients WHERE id = ${id}`)
     .then((results) => {
       client = results.data[0];
-      // console.log("YOU HERE???");
-      // console.log(client);
+      console.log("YOU HERE???");
+      console.log(client);
 
       db(`DELETE FROM clients WHERE id = ${id};`)
         .then((results) => {
@@ -77,6 +77,16 @@ router.delete("/:id", function (req, res, next) {
     .catch((err) => res.status(500).send(err));
 });
 
-// UPDATE a client from the DB
+// UPDATE a client from the DB [AND THEN DISPLAY NEW LIST ????]
+router.post("/", function (req, res, next) {
+  // const { company, firstname, lastname, email, mobile, url } = req.body;
+  db(
+    `UPDATE studiocoloured.clients SET (company, firstname, lastname, email, mobile, url) VALUES ('${company}', '${firstname}','${lastname}','${email}','${mobile}','${url}') WHERE id = ${id};`
+  )
+    .then((results) => {
+      res.send({ msg: "DATA WAS ADDED YAAAY!" });
+    })
+    .catch((err) => res.status(500).sender(err));
+});
 
 module.exports = router;
