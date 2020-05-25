@@ -36,7 +36,7 @@ router.get("/", getClients);
 // });
 
 // GET one client
-router.get("/:id", (req, res) => {
+router.get("/:id", clientShouldExist, (req, res) => {
   const { id } = req.params;
 
   db(`SELECT * FROM clients WHERE id = ${id}`)
@@ -62,7 +62,7 @@ router.get("/:id", (req, res) => {
 router.post("/id:", (req, res) => {
   const { company, firstname, lastname, email, mobile, url } = req.body;
   db(
-    `INSERT INTO clients (company, firstname, lastname, email, mobile, url) VALUES ('${company}', '${firstname}','${lastname}','${email}','${mobile}','${url}');`
+    `INSERT INTO clients(company, firstname, lastname, email, mobile, url) VALUES ('${company}', '${firstname}','${lastname}','${email}','${mobile}','${url}');`
   )
     .then(() => {
       getClients(req, res);

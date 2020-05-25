@@ -6,7 +6,7 @@ const db = require("../model/helper");
 const projectShouldExist = require("../guards/projectShouldExist");
 const getProjects = require("../guards/getProjects");
 
-// ** client_id = /client/:id (How to use this referance?)
+// ** client_id INT = /client/:id (use this referance to create JOIN project id)
 
 router.use(bodyParser.json());
 
@@ -25,7 +25,7 @@ router.put("/:id", projectShouldExist, (req, res) => {
 });
 
 // GET one project
-router.get("/:id", (req, res) => {
+router.get("/:id", projectShouldExist, (req, res) => {
   const { id } = req.params;
 
   db(`SELECT * FROM projects WHERE id = ${id}`)
@@ -37,9 +37,9 @@ router.get("/:id", (req, res) => {
 
 // INSERT a new project into DB
 router.post("/id:", (req, res) => {
-  const { title, project_status } = req.body;
+  const { title, project_status, project_id } = req.body;
   db(
-    `INSERT INTO projects (title, project_status, complete ) VALUES ('${title},'${project_status}', 0);`
+    `INSERT INTO projects (title, project_status, complete, project_id) VALUES ('${title}', '${project_status}','0','${project_id}');`
   )
     .then(() => {
       getProjects(req, res);

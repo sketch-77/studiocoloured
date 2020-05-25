@@ -35,7 +35,7 @@ con.connect(function (err) {
 
   //creating projects table.
   sql =
-    "DROP TABLE projects; CREATE TABLE projects (id INT AUTO_INCREMENT, title VARCHAR(255), project_status INT(3), complete BOOLEAN, client_id INT, PRIMARY KEY(id));";
+    "DROP TABLE projects; CREATE TABLE projects (id INT AUTO_INCREMENT, title VARCHAR(255), project_status INT(3), complete BOOLEAN, client_id INT, KEY(id));";
   con.query(sql, function (err, result) {
     if (err) throw err;
     console.log("Table creation `projects` was successful!");
@@ -51,7 +51,7 @@ con.connect(function (err) {
 
   // creating table for tasks.
   sql =
-    "DROP TABLE tasks; CREATE TABLE tasks (id INT AUTO_INCREMENT, title VARCHAR(255), task_status INT(3), complete BOOLEAN, project_id INT, PRIMARY KEY(id));";
+    "DROP TABLE tasks; CREATE TABLE tasks (id INT AUTO_INCREMENT, title VARCHAR(255), task_status INT(3), complete BOOLEAN, project_id INT, KEY(id));";
   con.query(sql, function (err, result) {
     if (err) throw err;
     console.log("Table creation `tasks` was successful!");
@@ -60,7 +60,7 @@ con.connect(function (err) {
 
   // creating table for images.
   sql =
-    "DROP TABLE images; CREATE TABLE images (id INT AUTO_INCREMENT, alt_text VARCHAR(255), img_url VARCHAR(255), project_id INT, PRIMARY KEY(id));";
+    "DROP TABLE images; CREATE TABLE images (id INT AUTO_INCREMENT, alt_text VARCHAR(255), img_url VARCHAR(255), project_id INT, KEY(id));";
   con.query(sql, function (err, result) {
     if (err) throw err;
     console.log("Table creation `images` was successful!");

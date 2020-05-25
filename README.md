@@ -4,9 +4,10 @@
 
 The initial contact will be via studio coloured website where a current client is given a username and password to access the CLIENT side. This will allow the client access to client projects and each project's tasks.
 Client access will allow:
-[] tracking the various projects,
-[] tracking tasks of a project,
-[] add comments (ammendments required, comments)
+[] view client details,
+[] view and track the projects,
+[] view and track tasks of a project,
+[] view comments ((future feature: add, make ammendments)
 
 This also allows for clarity during the project creation phase, tasks are clear and concise. The USER will be able to add comments or changes that will be updated by ADMIN. The data will be updated to the database and the USER will receive notification via email once the data is fetched and displayed on the USER side.
 
@@ -27,9 +28,10 @@ For this full stack app we will be using React, Node/Express, and MySQL, Express
 
 - Access the MySQL interface in your terminal by running `mysql -u root -p`
 
-- Check if the dataase is there : `show databases;` // studiocoloured
+- Check if the database is there : `show databases;` // scoloured
 
-- Create a new database called studiocoloured: `create database studiocoloured`
+<!-- - Create a new database called scoloured: `create database scoloured` -->
+
 - Add a `.env` file to the main folder of this repository containing the MySQL authentication information for MySQL user. For example:
 
 ```DB_HOST=localhost
@@ -38,9 +40,63 @@ For this full stack app we will be using React, Node/Express, and MySQL, Express
     DB_PASS=YOURPASSWORD
 ```
 
-- Run `npm run migrate` in the main folder of this repository, in a new terminal window. This will create a tables called 'clients', 'projects', 'tasks' and 'images' in your database (studiocoloured).
+- Run `npm run migrate` in the main folder of this repository, in a new terminal window. This will create a tables called 'clients', 'projects', 'tasks' and 'images' in your database (scoloured).
 
-- Make sure you understand how the `clients` table is constructed. In your MySQL console, you can run `use studiocoloured;` and then `describe clients;` to see the structure of the students table.
+mysql> show tables;
++---------------------+
+| Tables_in_scoloured |
++---------------------+
+| clients |
+| images |
+| projects |
+| tasks |
++---------------------+
+
+- Make sure you understand how the `clients` table is constructed. In your MySQL console, you can run `use scoloured;` and then `describe clients;` to see the structure of the clients table.
+  mysql> describe clients;
+  +-----------+--------------+------+-----+---------+----------------+
+  | Field | Type | Null | Key | Default | Extra |
+  +-----------+--------------+------+-----+---------+----------------+
+  | id | int | NO | PRI | NULL | auto_increment |
+  | company | varchar(255) | YES | | NULL | |
+  | firstname | varchar(255) | YES | | NULL | |
+  | lastname | varchar(255) | YES | | NULL | |
+  | email | varchar(255) | YES | | NULL | |
+  | mobile | varchar(255) | YES | | NULL | |
+  | url | varchar(255) | YES | | NULL | |
+  +-----------+--------------+------+-----+---------+----------------+
+
+mysql> describe projects;
++----------------+--------------+------+-----+---------+----------------+
+| Field | Type | Null | Key | Default | Extra |
++----------------+--------------+------+-----+---------+----------------+
+| id | int | NO | PRI | NULL | auto_increment |
+| title | varchar(255) | YES | | NULL | |
+| project_status | int | YES | | NULL | |
+| complete | tinyint(1) | YES | | NULL | |
+| client_id | int | YES | | NULL | |
++----------------+--------------+------+-----+---------+----------------+
+
+mysql> describe tasks;
++-------------+--------------+------+-----+---------+----------------+
+| Field | Type | Null | Key | Default | Extra |
++-------------+--------------+------+-----+---------+----------------+
+| id | int | NO | PRI | NULL | auto_increment |
+| title | varchar(255) | YES | | NULL | |
+| task_status | int | YES | | NULL | |
+| complete | tinyint(1) | YES | | NULL | |
+| project_id | int | YES | | NULL | |
++-------------+--------------+------+-----+---------+----------------+
+
+mysql> describe images;
++------------+--------------+------+-----+---------+----------------+
+| Field | Type | Null | Key | Default | Extra |
++------------+--------------+------+-----+---------+----------------+
+| id | int | NO | PRI | NULL | auto_increment |
+| alt_text | varchar(255) | YES | | NULL | |
+| img_url | varchar(255) | YES | | NULL | |
+| project_id | int | YES | | NULL | |
++------------+--------------+------+-----+---------+----------------+
 
 ### Development
 
