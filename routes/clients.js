@@ -25,15 +25,15 @@ router.use(bodyParser.json());
 router.get("/", getClients);
 
 // *TEST to see if client exists then mark status if its complete
-router.put("/:id", clientShouldExist, (req, res) => {
-  const { id } = req.params;
+// router.put("/:id", clientShouldExist, (req, res) => {
+//   const { id } = req.params;
 
-  db(`UPDATE clients SET complete = !complete WHERE id = ${id};`)
-    .then(() => {
-      getClients(req, res);
-    })
-    .catch((err) => res.status(500).send(err));
-});
+//   db(`UPDATE clients SET complete = !complete WHERE id = ${id};`)
+//     .then(() => {
+//       getClients(req, res);
+//     })
+//     .catch((err) => res.status(500).send(err));
+// });
 
 // GET one client
 router.get("/:id", (req, res) => {

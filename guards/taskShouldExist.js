@@ -1,17 +1,17 @@
 const db = require("../model/helper");
 
-function clientShouldExist(req, res, next) {
+function taskShouldExist(req, res, next) {
   const { id } = req.params;
 
-  db(`SELECT id FROM clients WHERE id = ${id};`)
+  db(`SELECT id FROM tasks WHERE id = ${id};`)
     .then((results) => {
       if (results.data.length) {
         next();
       } else {
-        res.status(404).send("client not found");
+        res.status(404).send("task not found");
       }
     })
     .catch((err) => res.status(500).send(err));
 }
 
-module.exports = clientShouldExist;
+module.exports = taskShouldExist;

@@ -27,15 +27,15 @@ con.connect(function (err) {
   });
 
   // //Creation of dummy table for testing purpose.
-  sql = `INSERT INTO clients (company, firstname, lastname, email, mobile, url) VALUES ('Lufthansa', 'Zoobee', 'Zurname', 'zzz@lhzxd.com', '+34798899381','www.xstudiocoloured.com');`;
+  sql = `INSERT INTO clients (company, firstname, lastname, email, mobile, url) VALUES ('Lufthansa', 'Zoobee', 'Zurname', 'zzz@lhzxd.com', '+34798899381','www.xszzzzzzz.com');`;
   con.query(sql, function (err, result) {
     if (err) throw err;
-    console.log("Creation of 'test' was successful!");
+    console.log("Creation of 'test client' was successful!");
   });
 
   //creating projects table.
   sql =
-    "DROP TABLE projects; CREATE TABLE projects (id INT AUTO_INCREMENT, title VARCHAR(255), summary VARCHAR(255), project_status VARCHAR(255), client_id INT, PRIMARY KEY(id));";
+    "DROP TABLE projects; CREATE TABLE projects (id INT AUTO_INCREMENT, title VARCHAR(255), summary VARCHAR(255), project_status INT(3), client_id INT, PRIMARY KEY(id));";
   con.query(sql, function (err, result) {
     if (err) throw err;
     console.log("Table creation `projects` was successful!");
@@ -51,7 +51,7 @@ con.connect(function (err) {
 
   // creating table for tasks.
   sql =
-    "DROP TABLE tasks; CREATE TABLE tasks (id INT AUTO_INCREMENT, title VARCHAR(255), summary VARCHAR(255), task_status VARCHAR(255), project_id INT, PRIMARY KEY(id));";
+    "DROP TABLE tasks; CREATE TABLE tasks (id INT AUTO_INCREMENT, title VARCHAR(255), summary VARCHAR(255), task_status INT(3), project_id INT, PRIMARY KEY(id));";
   con.query(sql, function (err, result) {
     if (err) throw err;
     console.log("Table creation `tasks` was successful!");
