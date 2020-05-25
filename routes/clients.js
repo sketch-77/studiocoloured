@@ -3,16 +3,19 @@ var router = express.Router();
 const bodyParser = require("body-parser");
 const db = require("../model/helper");
 
-// const clientShouldExist = require("../guards/clientShouldExist");
-// router.use(bodyParser.json());
+const clientShouldExist = require("../guards/clientShouldExist");
 
-const getClients = (req, res, next) => {
-  db(`SELECT * FROM clients ORDER BY id ASC;`)
-    .then((results) => {
-      res.send(results.data);
-    })
-    .catch((err) => res.status(500).send(err));
-};
+const getClients = require("../guards/getClients");
+
+router.use(bodyParser.json());
+
+// function getClients(req, res) {
+//   db(`SELECT * FROM clients ORDER BY id ASC;`)
+//     .then((results) => {
+//       res.send(results.data);
+//     })
+//     .catch((err) => res.status(500).send(err));
+// }
 
 // router.get("/", (req, res) => {
 //   res.send("Welcome to Studio Coloured Clients List!");
@@ -20,21 +23,20 @@ const getClients = (req, res, next) => {
 
 // GET clients list
 router.get("/", getClients);
-// router.get("/clients", getClients);
 
-// **** TEST to see if client exists attempt 1 *** create the guards ***
-// router.put("/clients/:id", clientShouldExist, (req, res, next) => {
-//   const { id } = req.params;
+// *TEST to see if client exists then mark status if its complete
+router.put("/:id", clientShouldExist, (req, res) => {
+  const { id } = req.params;
 
-//   db(`UPDATE clients SET complete = !complete WHERE id = ${id};`)
-//     .then(() => {
-//       getClients(req, res);
-//     })
-//     .catch((err) => res.status(500).send(err));
-// });
+  db(`UPDATE clients SET complete = !complete WHERE id = ${id};`)
+    .then(() => {
+      getClients(req, res);
+    })
+    .catch((err) => res.status(500).send(err));
+});
 
-// GET one client attempt 2
-router.get("/:id", function (req, res, next) {
+// GET one client
+router.get("/:id", (req, res) => {
   const { id } = req.params;
 
   db(`SELECT * FROM clients WHERE id = ${id}`)
@@ -44,49 +46,73 @@ router.get("/:id", function (req, res, next) {
     .catch((err) => res.status(500).send(err));
 });
 
+// // INSERT a new client into DB
+// router.post("/", function (req, res, next) {
+//   const { company, firstname, lastname, email, mobile, url } = req.body;
+//   db(
+//     `INSERT INTO clients (company, firstname, lastname, email, mobile, url) VALUES ('${company}', '${firstname}','${lastname}','${email}','${mobile}','${url}');`
+//   )
+//     .then((results) => {
+//       res.send({ msg: "DATA WAS ADDED YAAAY!" });
+//     })
+//     .catch((err) => res.status(500).sender(err));
+// });
+
 // INSERT a new client into DB
-router.post("/", function (req, res, next) {
+router.post("/id:", (req, res) => {
   const { company, firstname, lastname, email, mobile, url } = req.body;
   db(
     `INSERT INTO clients (company, firstname, lastname, email, mobile, url) VALUES ('${company}', '${firstname}','${lastname}','${email}','${mobile}','${url}');`
   )
-    .then((results) => {
-      res.send({ msg: "DATA WAS ADDED YAAAY!" });
+    .then(() => {
+      getClients(req, res);
     })
-    .catch((err) => res.status(500).sender(err));
+    .catch((err) => res.status(500).send(err));
 });
 
+// // DELETE a client from the DB
+// router.delete("/:id", function (req, res, next) {
+//   //your code here
+//   const { id } = req.params;
+//   let client = null;
+
+//   db(`SELECT * FROM clients WHERE id = ${id}`)
+//     .then((results) => {
+//       client = results.data[0];
+//       console.log("YOU HERE???");
+//       console.log(client);
+
+//       db(`DELETE FROM clients WHERE id = ${id};`)
+//         .then(() => {
+//           res.send({ msg: `The client ${client.company} was deleted!` });
+//         })
+//         .catch((err) => res.status(500).send(err));
+//     })
+//     .catch((err) => res.status(500).send(err));
+// });
+
 // DELETE a client from the DB
-router.delete("/:id", function (req, res, next) {
+router.delete("/:id", clientShouldExist, (req, res) => {
   //your code here
   const { id } = req.params;
-  let client = null;
 
-  db(`SELECT * FROM clients WHERE id = ${id}`)
-    .then((results) => {
-      client = results.data[0];
-      console.log("YOU HERE???");
-      console.log(client);
-
-      db(`DELETE FROM clients WHERE id = ${id};`)
-        .then((results) => {
-          res.send({ msg: `The client ${client.company} was deleted!` });
-        })
-        .catch((err) => res.status(500).send(err));
+  db(`DELETE FROM clients WHERE id = ${id};`)
+    .then(() => {
+      getClients(req, res);
     })
     .catch((err) => res.status(500).send(err));
 });
 
 // UPDATE a client from the DB [AND THEN DISPLAY NEW LIST ????]
-router.post("/", function (req, res, next) {
-  // const { company, firstname, lastname, email, mobile, url } = req.body;
-  db(
-    `UPDATE studiocoloured.clients SET (company, firstname, lastname, email, mobile, url) VALUES ('${company}', '${firstname}','${lastname}','${email}','${mobile}','${url}') WHERE id = ${id};`
-  )
-    .then((results) => {
-      res.send({ msg: "DATA WAS ADDED YAAAY!" });
-    })
-    .catch((err) => res.status(500).sender(err));
-});
+// router.post("/", function (req, res, next) {
+//   // const { company, firstname, lastname, email, mobile, url } = req.body;
+//   db(
+//     `UPDATE studiocoloured.clients SET (company, firstname, lastname, email, mobile, url) VALUES ('${company}', '${firstname}','${lastname}','${email}','${mobile}','${url}') WHERE id = ${id};`
+//   )
+//     .then(() => {
+//       res.send({ msg: "DATA WAS ADDED YAAAY!" });
+//     })
+//     .catch((err) => res.status(500).sender(err));
+// });
 
 module.exports = router;
