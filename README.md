@@ -34,7 +34,7 @@ For this full stack app we will be using React, Node/Express, and MySQL, Express
 
 ```DB_HOST=localhost
     DB_USER=root
-    DB_NAME=studiocoloured
+    DB_NAME=scoloured
     DB_PASS=YOURPASSWORD
 ```
 

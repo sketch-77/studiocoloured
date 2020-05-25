@@ -10,7 +10,7 @@ const con = mysql.createConnection({
   host: DB_HOST || "127.0.0.1",
   user: DB_USER || "root",
   password: DB_PASS || "root",
-  database: DB_NAME || "studiocoloured",
+  database: DB_NAME || "scoloured",
   multipleStatements: true,
 });
 
@@ -27,11 +27,11 @@ con.connect(function (err) {
   });
 
   // //Creation of dummy table for testing purpose.
-  sql = `INSERT INTO clients (company, firstname, lastname, email, mobile, url) VALUES ('Lufthansa', 'Zoobee', 'Zurname', 'zzz@lhzxd.com', '+34798899381','www.xszzzzzzz.com');`;
-  con.query(sql, function (err, result) {
-    if (err) throw err;
-    console.log("Creation of 'test client' was successful!");
-  });
+  // sql = `INSERT INTO clients (company, firstname, lastname, email, mobile, url) VALUES ('Lufthansa', 'Zoobee', 'Zurname', 'zzz@lhzxd.com', '+34798899381','www.xszzzzzzz.com');`;
+  // con.query(sql, function (err, result) {
+  //   if (err) throw err;
+  //   console.log("Creation of 'test client' was successful!");
+  // });
 
   //creating projects table.
   sql =
@@ -42,12 +42,12 @@ con.connect(function (err) {
   });
 
   // Dummy table for project.
-  sql =
-    "INSERT INTO projects (title, project_status, complete) VALUES (Client needs a new brand identity for logo, website and name cards.', '20', '0');";
-  con.query(sql, function (err, result) {
-    if (err) throw err;
-    console.log("Creation of 'project test' was successful!");
-  });
+  // sql =
+  //   "INSERT INTO projects (title, project_status, complete) VALUES (Client needs a new brand identity for logo, website and name cards.', '20', '0');";
+  // con.query(sql, function (err, result) {
+  //   if (err) throw err;
+  //   console.log("Creation of 'project test' was successful!");
+  // });
 
   // creating table for tasks.
   sql =

@@ -17,7 +17,7 @@ router.get("/", getTasks);
 router.put("/:id", taskShouldExist, (req, res) => {
   const { id } = req.params;
 
-  db(`UPDATE tasks SET created = !created WHERE id = ${id};`)
+  db(`UPDATE tasks SET complete = !complete WHERE id = ${id};`)
     .then(() => {
       getTasks(req, res);
     })
@@ -37,9 +37,9 @@ router.get("/:id", (req, res) => {
 
 // INSERT a new task into DB
 router.post("/id:", (req, res) => {
-  const { title, summary, task_status, project_id } = req.body;
+  const { title, task_status, complete, project_id } = req.body;
   db(
-    `INSERT INTO tasks (title, summary, task_status, project_id) VALUES ('${title}', '${summary}','${task_status}','${project_id}');`
+    `INSERT INTO tasks (title, task_status, complete, project_id) VALUES ('${title}', '${task_status}','0','${project_id}');`
   )
     .then(() => {
       getTasks(req, res);
