@@ -1,4 +1,6 @@
-# Studio Coloured*PROJECT TRACKING TOOL*
+# Studio Coloured
+
+## _PROJECT TRACKING TOOL_
 
 The initial contact will be via studio coloured website where a current client is given a username and password to access the CLIENT side. This will allow the client access to client projects and each project's tasks.
 Client access will allow:
@@ -30,16 +32,15 @@ For this full stack app we will be using React, Node/Express, and MySQL, Express
 - Create a new database called studiocoloured: `create database studiocoloured`
 - Add a `.env` file to the main folder of this repository containing the MySQL authentication information for MySQL user. For example:
 
-```bash
-  DB_HOST=localhost
-  DB_USER=root
-  DB_NAME=studiocoloured
-  DB_PASS=YOURPASSWORD
+```DB_HOST=localhost
+    DB_USER=root
+    DB_NAME=studiocoloured
+    DB_PASS=YOURPASSWORD
 ```
 
-- Run `npm run migrate` in the main folder of this repository, in a new terminal window. This will create a table called 'students' in your database.
+- Run `npm run migrate` in the main folder of this repository, in a new terminal window. This will create a tables called 'clients', 'projects', 'tasks' and 'images' in your database (studiocoloured).
 
-- Make sure you understand how the `students` table is constructed. In your MySQL console, you can run `use facebook;` and then `describe students;` to see the structure of the students table.
+- Make sure you understand how the `clients` table is constructed. In your MySQL console, you can run `use studiocoloured;` and then `describe clients;` to see the structure of the students table.
 
 ### Development
 
@@ -48,13 +49,31 @@ For this full stack app we will be using React, Node/Express, and MySQL, Express
 
 ## Basic Requirements
 
-Create a webpage with the following functionality:
+The webpage ADMIN side will have the following functionality:
 
 - [ ] A list of clients.
-- [ ] A form to add new client. ( this information allows freelance insight into client) There should be room to input:
-      company name or website URL, contact person: first and last names, separately, contact email address,
-  - After clicking a button in the form, the new student should be added to the database and displayed on the page.
-- [ ] Each student can be deleted with a delete button. After clicking on this button, student should be deleted from the database and the updated list of students shown on the page
+- [ ] A form to add new client with the following inputs: - company, firstname, lastname, email, mobile, url
+  - After clicking a SUBMIT button in the form, the new cleint should be added to the database and displayed on the page.
+- [ ] Each client can be deleted with a delete button. After clicking on this button, teh client should be deleted from the database and the updated list of clients is shown on the page.
+- [] the clients will have a PRIMARY key.
+
+- [ ] When a client is clicked on in the list of clients, you get a list of projects.
+- [ ] A form to add new project with the following inputs: - title, summary, project_status
+  - After clicking a SUBMIT button in the form, the new project should be added to the database and displayed on the page.
+- [ ] Each project can be deleted with a delete button. After clicking on this button, the project should be deleted from the database and the updated list of projects is shown on the page.
+- [] the images will have a foreign key relation with the client_id.
+
+- [ ] When a project is clicked on in the list of projects, you get a list of tasks.
+- [ ] A form to add new task with the following inputs: - title, summary, task_status
+  - After clicking a SUBMIT button in the form, the new task should be added to the database and displayed on the page.
+- [ ] Each task can be deleted with a delete button. After clicking on this button, the task should be deleted from the database and the updated list of tasks is shown on the page.
+- [] the tasks_id will have a foreign key relation with the project_id.
+
+- [ ] When images is clicked on in the list of images, you get a list of images.
+- [ ] A form to add new image with the following inputs: - alt_text, img_url
+  - After clicking a SUBMIT button in the form, the new image should be added to the database and displayed on the page.
+- [ ] Each image can be deleted with a delete button. After clicking on this button, the image should be deleted from the database and the updated list of images is shown on the page.
+- [] the images_id will have a foreign key relation with the project_id.
 
 #### DB SCHEMA DESIGN
 
