@@ -2,20 +2,6 @@ import React from "react";
 import "./App.css";
 import { v4 as uuidv4 } from "uuid";
 
-//[client_status: false] add to clients and projects
-
-// class App extends React.Component {
-//   constructor(props) {
-//     super(props);
-//     this.state = {
-//       newclient: "",
-//       clients: [
-//         { id: uuidv4(), title: "bake cake", client_status: false },
-//         { id: uuidv4(), title: "wash hair", client_status: false },
-//         { id: uuidv4(), title: "do laundry", client_status: false },
-//       ],
-//     };
-//   }
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -68,6 +54,14 @@ class App extends React.Component {
     // upon failure, show error message
     // .catch((err) => res.status(500).send(err));
   }
+  // addclient = () => {
+
+  //     const newclient = { list: this.state.newclient, done: false}
+  //     this.setState({
+  //       clientlist: [newclient, ...this.state.clientlist],
+  //       newclient: ""
+  //     });
+  //   }
 
   addclient() {
     fetch("/clients", {
@@ -106,7 +100,7 @@ class App extends React.Component {
   updateClient(id) {
     this.updateClient(id, "PUT");
   }
-  clients(id) {
+  client(id) {
     this.updateClient(id, "DELETE");
   }
 
@@ -115,7 +109,7 @@ class App extends React.Component {
       <div className="container">
         <div className="my-4 ">
           <h1>
-            <u>Studio Coloured Client List</u>
+            <u>ADMIN VIEW Studio Coloured Client List</u>
           </h1>
         </div>
 
