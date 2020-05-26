@@ -12,6 +12,7 @@ router.use(bodyParser.json());
 
 // GET images list
 router.get("/", getImages);
+xxx;
 
 // *TEST to see if task exists then mark status if its img_url
 // router.put("/:id", imageShouldExist, (req, res) => {
