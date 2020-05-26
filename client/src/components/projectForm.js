@@ -1,13 +1,14 @@
 import React, { Component } from "react";
 import project from "../utils/project";
 import clients from "../clients";
+import getClientList from "../components/getClientList";
 
 const client_id = { clients };
 
 export default class ProjectForm extends Component {
   constructor(props) {
     super(props);
-    this.state = { value: "client_id" };
+    this.state = { value: "client_id" }; // do we get this from the client list??
     this.state = {
       title: "",
       project_status: "",
@@ -43,13 +44,24 @@ export default class ProjectForm extends Component {
       <div className="mb-4">
         <input
           type="text"
+          value={client_id}
+          name="client_id"
+          onChange={this.handleInput}
+          placeholder="Client"
+          className="form-control"
+        />
+        {/* from a drop down list choose the client add the project */}
+
+        <select value={this.state.value} onChange={this.handleChange}></select>
+        <input
+          type="text"
           value={title}
           name="title"
           onChange={this.handleInput}
-          placeholder="First name"
+          placeholder="task description"
           className="form-control"
         />
-        // from a drop down list choose the client // add the project
+
         <select value={this.state.value} onChange={this.handleChange}></select>
         <input
           type="text"

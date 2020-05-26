@@ -25,9 +25,9 @@ export default class ClientForm extends Component {
   };
 
   addClient = () => {
-    const { firstname, lastname } = this.state;
+    const { firstname, lastname, company } = this.state;
 
-    const Client = { firstname, lastname };
+    const Client = { firstname, lastname, company };
 
     client.addClient(Client).then((response) => {
       this.props.onAddClient(response.msg);
@@ -35,10 +35,19 @@ export default class ClientForm extends Component {
   };
 
   render() {
-    const { firstname, lastname } = this.state;
+    const { firstname, lastname, company } = this.state;
 
     return (
       <div className="mb-4">
+        <input
+          type="text"
+          value={company}
+          name="company"
+          onChange={this.handleInput}
+          placeholder="Company name"
+          className="form-control"
+        />
+
         <input
           type="text"
           value={firstname}

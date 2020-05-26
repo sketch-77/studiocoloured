@@ -10,11 +10,6 @@ export default class App extends Component {
     this.state = {
       clients: [],
       company: "",
-      firstname: "",
-      lastname: "",
-      email: "",
-      mobile: "",
-      url: "",
       msg: "",
       client: null,
     };
@@ -63,7 +58,7 @@ export default class App extends Component {
           {clients.map((client) => (
             <li key={client.id} className="list-group-item">
               <span onClick={() => this.getClients(client.id)}>
-                {client.firstname} {client.lastname}
+                {client.company} {client.firstname} {client.lastname}
               </span>
               <button
                 className="btn btn-outline-danger"
@@ -79,7 +74,7 @@ export default class App extends Component {
           <div className="card card-body mt-5">
             <p>This is the client profile</p>
             <h2>
-              {client.firstname} {client.lastname}
+              {client.company} {client.firstname} {client.lastname}
             </h2>
           </div>
         )}
