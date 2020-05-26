@@ -15,6 +15,8 @@ export default class App extends Component {
     };
   }
 
+  //function test(){}
+
   componentDidMount() {
     this.getClients();
   }
