@@ -36,10 +36,10 @@ router.get("/:id", projectShouldExist, (req, res) => {
 });
 
 // INSERT a new project into DB
-router.post("/id:", (req, res) => {
-  const { title, project_status, project_id } = req.body;
+router.post("/", (req, res) => {
+  const { title, project_status, client_id } = req.body;
   db(
-    `INSERT INTO projects (title, project_status, complete, project_id) VALUES ('${title}', '${project_status}','0','${project_id}');`
+    `INSERT INTO projects (title, project_status, complete, client_id) VALUES ('${title}', '${project_status}','0','${client_id}');`
   )
     .then(() => {
       getProjects(req, res);
