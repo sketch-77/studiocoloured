@@ -5,8 +5,15 @@ export default class ClientForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      clients: [],
+      company: "",
       firstname: "",
       lastname: "",
+      email: "",
+      mobile: "",
+      url: "",
+      msg: "",
+      client: null,
     };
   }
 

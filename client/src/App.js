@@ -9,8 +9,12 @@ export default class App extends Component {
     super(props);
     this.state = {
       clients: [],
+      company: "",
       firstname: "",
       lastname: "",
+      email: "",
+      mobile: "",
+      url: "",
       msg: "",
       client: null,
     };
@@ -48,7 +52,7 @@ export default class App extends Component {
     const { clients, msg, client } = this.state;
 
     return (
-      <div className="AdminView container">
+      <div className="Admin container">
         <h1>Studio Coloured Client</h1>
 
         <ClientForm onAddClient={this.onAddClient} />
