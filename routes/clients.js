@@ -59,11 +59,7 @@ router.get("/:id", clientShouldExist, (req, res) => {
 // });
 
 // INSERT a new client into DB
-<<<<<<< HEAD
 router.post("/", (req, res) => {
-=======
-router.post("/id:", (req, res) => {
->>>>>>> e45110fee00b959d08e167bb56cce73e2b29bdf9
   const { company, firstname, lastname, email, mobile, url } = req.body;
   db(
     `INSERT INTO clients(company, firstname, lastname, email, mobile, url) VALUES ('${company}', '${firstname}','${lastname}','${email}','${mobile}','${url}');`
