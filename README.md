@@ -1,6 +1,6 @@
 # Studio Coloured
 
-## _PROJECT TRACKING TOOL_
+## _CLIENT ACCESS & PROJECT TRACKING TOOL_
 
 The initial contact will be via studio coloured website where a current client is given a username and password to access the CLIENT side. This will allow the client access to client projects and each project's tasks.
 Client access will allow:
